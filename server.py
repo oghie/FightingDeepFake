@@ -179,7 +179,7 @@ def homepage():
   return render_template('index.html')
 
 
-@app.route('/check', methods=['POST', 'GET'])
+@app.route('/Detect', methods=['POST', 'GET'])
 def DetectPage():
     if request.method == 'GET':
         return render_template('index.html')
