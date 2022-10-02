@@ -1,5 +1,5 @@
 import argparse
-from flask import Flask, render_template, redirect, request, url_for, send_file
+from flask import Flask, redirect, request, url_for, send_file
 from flask import jsonify, json
 from werkzeug.utils import secure_filename
 
@@ -177,8 +177,8 @@ def detectFakeVideo(videoPath):
 def DetectPage():
     if not request.method == "POST":
         return
-    if request.files.get("video"):
 
+    if request.files.get("video"):
         video = request.files['video']
         print(video.filename)
         video_filename = secure_filename(video.filename)
@@ -195,7 +195,6 @@ def DetectPage():
         data = json.dumps(data)
         os.remove(video_path);
         return data
-        #return render_template('index.html', data=data)
         
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Flasking DeepFake Detection")
