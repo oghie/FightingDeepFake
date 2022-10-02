@@ -1,3 +1,4 @@
+import argparse
 from flask import Flask, render_template, redirect, request, url_for, send_file
 from flask import jsonify, json
 from werkzeug.utils import secure_filename
@@ -172,18 +173,12 @@ def detectFakeVideo(videoPath):
     return prediction
 
 
-@app.route('/', methods=['POST', 'GET'])
-def homepage():
-  if request.method == 'GET':
-	  return render_template('index.html')
-  return render_template('index.html')
-
-
-@app.route('/Detect', methods=['POST', 'GET'])
+@app.route('/Detect', methods=['POST'])
 def DetectPage():
-    if request.method == 'GET':
-        return render_template('index.html')
-    if request.method == 'POST':
+    if not request.method == "POST":
+        return
+    if request.files.get("video"):
+
         video = request.files['video']
         print(video.filename)
         video_filename = secure_filename(video.filename)
@@ -199,7 +194,12 @@ def DetectPage():
         data = {'output': output, 'confidence': confidence}
         data = json.dumps(data)
         os.remove(video_path);
-        return render_template('index.html', data=data)
+        return data
+        #return render_template('index.html', data=data)
         
-# change
-app.run(host='0.0.0.0', port=8282);
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Flasking DeepFake Detection")
+    parser.add_argument("--port", default=8282, type=int, help="port number")
+    args = parser.parse_args()
+
+    app.run(host="0.0.0.0", port=args.port)  # debug=True causes Restarting with stat

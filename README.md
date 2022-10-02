@@ -1,4 +1,5 @@
-## Fighting DeepFake Lite
+## Fighting DeepFake RestAPI
+Application of DeepFake detection with RestAPI services (Flask)
 
 ### Tested on:
 ```
@@ -17,6 +18,12 @@ $ sudo pip3 install -r requirements.txt
 ### Run:
 
 ```
-# python3 server.py
+# python3 server.py --port 8282
 
+```
+
+### Test
+
+```
+curl -X POST -F video=@/path/yourTestVideoFile.mp4 'http://<yourIP>:8282/Detect'
 ```
