@@ -1,5 +1,5 @@
 ## Fighting DeepFake RestAPI
-Application of DeepFake detection with RestAPI services (Flask)
+Application of DeepFake detection with RestAPI services (Flask) using deep learning (Accuracy 87.1)
 
 ### Tested on:
 ```
