@@ -36,7 +36,7 @@ video_path = ""
 
 detectOutput = []
 
-app = Flask("__main__", template_folder="templates")
+app = Flask(__name__)
 app.config['UPLOAD_DIR'] = UPLOAD_DIR
 
 class Model(nn.Module):
