@@ -161,6 +161,10 @@ def detectFakeVideo(videoPath):
     # model = Model(2).cuda()
     model = Model(2)
     path_to_model = 'model/df_model.pt'
+    #path_to_model = 'model/model_97_acc_60_frames_FF_data.pt'
+    #path_to_model = 'model/model_90_acc_60_frames_final_data.pt'
+    #path_to_model = 'model/model_93_acc_100_frames_celeb_FF_data.pt'
+    
     model.load_state_dict(torch.load(path_to_model, map_location=torch.device('cpu')))
     model.eval()
     for i in range(0,len(path_to_videos)):

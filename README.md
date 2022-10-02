@@ -16,7 +16,7 @@ $ sudo pip3 install -r requirements.txt
 ### Run:
 
 ```
-# python3 server.py --port 8282
+# python3 api.py --port 8282
 
 ```
 ### Test
