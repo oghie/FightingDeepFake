@@ -39,6 +39,7 @@ detectOutput = []
 app = Flask(__name__)
 app.config['UPLOAD_DIR'] = UPLOAD_DIR
 
+
 class Model(nn.Module):
   def __init__(self, num_classes, latent_dim= 2048, lstm_layers=1, hidden_dim=2048, bidirectional=False):
     super(Model, self).__init__()
@@ -161,9 +162,6 @@ def detectFakeVideo(videoPath):
     # model = Model(2).cuda()
     model = Model(2)
     path_to_model = 'model/df_model.pt'
-    #path_to_model = 'model/model_97_acc_60_frames_FF_data.pt'
-    #path_to_model = 'model/model_90_acc_60_frames_final_data.pt'
-    #path_to_model = 'model/model_93_acc_100_frames_celeb_FF_data.pt'
     
     model.load_state_dict(torch.load(path_to_model, map_location=torch.device('cpu')))
     model.eval()
@@ -205,4 +203,4 @@ if __name__ == "__main__":
     parser.add_argument("--port", default=8282, type=int, help="port number")
     args = parser.parse_args()
 
-    app.run(host="0.0.0.0", port=args.port)  # debug=True causes Restarting with stat
+    app.run(host="0.0.0.0", port=args.port, threaded=True)  # debug=True causes Restarting with stat
